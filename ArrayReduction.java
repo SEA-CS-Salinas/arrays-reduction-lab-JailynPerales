@@ -1,6 +1,6 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name -
+//Name - Jailyn Perales
 
 import java.util.Queue;
 import java.util.PriorityQueue;
@@ -11,8 +11,29 @@ public class ArrayReduction
 	public static int min_cost( int[] r )
 	{
 		//MUST USE A PRIORITY QUEUE
-		return 0;	
+		
+		Queue<Integer> queue = new PriorityQueue<Integer>();
+		//Putting array into queue
+		for(int i = 0; i < r.length; i ++){
+		   queue.add(r[i]);
+		   
+		}
+		int min = 0;
+		if(queue.size() < 2){
+		    return 0;
+		}
+		while(queue.size() > 1){
+		    int one = queue.poll();
+		    int two = queue.poll();
+		    int newVar = one + two;
+		    min += newVar;
+		    queue.add(newVar);
+		}
+		return min;
 	}
+	
+	
+	
 	
 	public static void main( String[] args )
 	{
@@ -26,7 +47,7 @@ public class ArrayReduction
 		System.out.println( ArrayReduction.min_cost(s2));	
 			
 		int[] s3 = {1,2,3,4,7,22,33,54,-66,3,4,5,76,7,999};
-		System.out.println( ArrayReduction.min_cost(s3));	
+	    System.out.println( ArrayReduction.min_cost(s3));	
 			
 		int[] s4 = {1,1,1,1,1};
 		System.out.println( ArrayReduction.min_cost(s4));	
@@ -36,7 +57,6 @@ public class ArrayReduction
 	}
 }
 
-
 /* EXPECTED OUTPUT
  0
 85
@@ -45,3 +65,4 @@ public class ArrayReduction
 12
 2
 */
+
